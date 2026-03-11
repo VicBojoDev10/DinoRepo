@@ -774,6 +774,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8145866895965914376, guid: 4202b072a9cb9f1408e4a8ed62388bcb, type: 3}
+      propertyPath: windowId
+      value: popupui
+      objectReference: {fileID: 0}
     - target: {fileID: 8364962902075453653, guid: 4202b072a9cb9f1408e4a8ed62388bcb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

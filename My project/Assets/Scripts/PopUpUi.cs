@@ -2,16 +2,13 @@ using UnityEngine;
 
 public class PopUpUi : UiWindow
 {
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void Show()
     {
-        
+        base.Show();        
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Hide()
     {
-        
+        base.Hide();
     }
 }
