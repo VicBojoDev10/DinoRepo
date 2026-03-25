@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1607288830889204725}
   - component: {fileID: 8145866895965914376}
   m_Layer: 0
-  m_Name: InventoryUI
+  m_Name: IntroUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1079af35a3c87b141ae7d88e65ee0f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PopUpUi
-  windowId: inventoryui
+  windowId: storeui
   canvas: {fileID: 880692591974312702}
   canvasGroup: {fileID: 3650874160192392311}
   hideOnStart: 1
@@ -134,7 +134,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2430, y: 1080}
+  m_SizeDelta: {x: 616, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4761017736317142194
 CanvasRenderer:
@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 5302285274019074203}
   - component: {fileID: 7316877644387116710}
   m_Layer: 0
-  m_Name: InventoryCanvas
+  m_Name: StoreCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

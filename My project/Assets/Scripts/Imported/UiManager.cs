@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using NaughtyAttributes;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 
 public class UiManager : MonoBehaviour
@@ -70,6 +71,18 @@ public class UiManager : MonoBehaviour
         }
         
         //if (windowToShow != null))
+    }
+
+    public UIWindow GetWindow(string windowId)
+    {
+        foreach (UIWindow window in windows)
+        {
+            if (window.WindowId == windowId)
+            {
+                return window;
+            }
+        }
+        return null;
     }
 }
 
