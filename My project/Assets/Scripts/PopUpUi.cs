@@ -18,7 +18,7 @@ public class PopUpUi : UIWindow
     private float _initialY;
     private float _finalY;
 
-    public override void Initialize()
+    public void Initialize()
     {
         _initialY = rectTransformCanvasGroup.rect.height + (popUpRectTransform.rect.height * 2);
         _finalY = rectTransformCanvasGroup.position.y;
@@ -36,7 +36,7 @@ public class PopUpUi : UIWindow
 
     public override void Hide()
     {
-        popUpRectTransform.DOScale(Vector3.zero, 1.5f).SetEase(EaseOut).OnComplete(() =>
+        popUpRectTransform.DOScale(Vector3.zero, 1.5f).SetEase(Ease.OutBack).OnComplete(() =>
         {
             popUpRectTransform.gameObject.SetActive(false);
         });
@@ -65,6 +65,11 @@ public class PopUpUi : UIWindow
     private void OnNoButtonClick()
     {
         Debug.Log("No Activated");
+    }
+
+    public void SetText(string content)
+    {
+        _titleText.text = content;
     }
     #endregion
 }

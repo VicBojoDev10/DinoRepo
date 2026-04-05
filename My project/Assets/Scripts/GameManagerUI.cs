@@ -7,9 +7,35 @@ public class GameManagerUI : MonoBehaviour
 
     public void StartingGame()
     {
+        ShowPopUp();
+    }
+
+    public void OnGameFinished()
+    {
+        PopUpUi popUpUi = UiManager.Instance.GetWindow(UIWindowsIds.PopUpUI) as PopUpUi;
+        if(popUpUi == null) return;
+        popUpUi.SetText("On game finished");
+    }
+    private void ShowPopUp()
+    {
+        UiManager.Instance.ShowWindow(UIWindowsIds.PopUpUI);
         PopUpUi popopui = UiManager.Instance.GetWindow(UIWindowsIds.PopUpUI) as PopUpUi;
         if(popopui == null) return;
-        popopui.AddText("On game finished");
+        popopui.AddText("HI");
     }
-    
+
+    private void HidePopUp()
+    {
+        UiManager.Instance.ShowWindow(UIWindowsIds.PopUpUI);
+    }
+
+    private void DoYesDebug()
+    {
+        Debug.Log("YES DEBUG");
+    }
+
+    private void DoNoDebug()
+    {
+        Debug.Log("NO DEBUG");
+    }
 }

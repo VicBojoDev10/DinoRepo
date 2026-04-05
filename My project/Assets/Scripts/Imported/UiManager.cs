@@ -91,4 +91,11 @@ public static class UIWindowsIds
     public const string PopUpUI = "popupui";
     public const string StoreUI = "storeui";
     public const string InventoryUI = "inventoryui";
+    public const string IntroUI = "introui";
+    public const string MenuUI = "menuui";
+    public const string SkinsUI = "skinsui";
+    public const string AchievementsUI = "achievementsui";
+    public const string InformationUI = "informationui";
+    public const string UpgradesUI = "upgradesui";
+    
 }

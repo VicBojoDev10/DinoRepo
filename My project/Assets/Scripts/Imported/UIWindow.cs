@@ -12,7 +12,7 @@ public class UIWindow : MonoBehaviour
 
     [SerializeField] private bool hideOnStart = true;
     
-    private RectTransform _rectTransformCanvasGroup => canvasGroup.GetComponent<RectTransform>();
+    public RectTransform rectTransformCanvasGroup => canvasGroup.GetComponent<RectTransform>();
     public string WindowId => windowId;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,14 +25,14 @@ public class UIWindow : MonoBehaviour
     public void Initialize()
     { 
         canvas.gameObject.SetActive(!hideOnStart);
-        _rectTransformCanvasGroup.localScale = new Vector3(0, 0, 0);
+        rectTransformCanvasGroup.localScale = new Vector3(0, 0, 0);
     }
  
     [Button]
     public virtual void Show()
     {
         canvas.gameObject.SetActive(true);
-        _rectTransformCanvasGroup.DOScale(Vector3.one, 0.7f).OnComplete(() =>
+        rectTransformCanvasGroup.DOScale(Vector3.one, 0.7f).OnComplete(() =>
         {
             
         });
@@ -41,7 +41,7 @@ public class UIWindow : MonoBehaviour
     [Button]
     public virtual void Hide()
     {
-        _rectTransformCanvasGroup.DOScale(Vector3.zero, 0.7f).OnComplete(() =>
+        rectTransformCanvasGroup.DOScale(Vector3.zero, 0.7f).OnComplete(() =>
         {
             canvas.gameObject.SetActive(false);
         });

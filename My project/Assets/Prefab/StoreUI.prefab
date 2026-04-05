@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1607288830889204725}
-  - component: {fileID: 8145866895965914376}
+  - component: {fileID: 7788259025857226222}
   m_Layer: 0
   m_Name: StoreUI
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 786416294837597119}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8145866895965914376
+--- !u!114 &7788259025857226222
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,9 +42,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3821739906056099654}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1079af35a3c87b141ae7d88e65ee0f61, type: 3}
+  m_Script: {fileID: 11500000, guid: e94c792c374ff484393444b312c9c71b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PopUpUi
+  m_EditorClassIdentifier: Assembly-CSharp::StoreUI
   windowId: storeui
   canvas: {fileID: 880692591974312702}
   canvasGroup: {fileID: 3650874160192392311}
