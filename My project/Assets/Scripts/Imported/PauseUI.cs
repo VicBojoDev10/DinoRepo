@@ -1,8 +1,8 @@
 using UnityEngine;
 using Vic.Code;
-public class InformationUI : UIWindow
+public class PauseUI : UIWindow
 {
-    public override void Show()
+ public override void Show()
     {
         base.Show();
     }

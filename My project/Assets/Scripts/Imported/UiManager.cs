@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEditor.PackageManager.UI;
 using UnityEngine;
+using Vic.Code;
 
 public class UiManager : MonoBehaviour
 {
@@ -97,5 +98,9 @@ public static class UIWindowsIds
     public const string AchievementsUI = "achievementsui";
     public const string InformationUI = "informationui";
     public const string UpgradesUI = "upgradesui";
+    public const string PauseUI = "pauseui";
+    public const string ReviveUI = "reviveui";
+    public const string RetryUI = "retryui";
+    public const string GameplayUI = "gameplayui";
     
 }

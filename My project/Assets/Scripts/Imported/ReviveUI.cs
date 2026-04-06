@@ -1,6 +1,7 @@
 using UnityEngine;
 using Vic.Code;
-public class InformationUI : UIWindow
+
+public class ReviveUI : UIWindow
 {
     public override void Show()
     {

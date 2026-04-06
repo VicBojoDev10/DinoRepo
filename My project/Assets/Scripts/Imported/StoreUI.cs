@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using Vic.Code;
 public class StoreUI : UIWindow
 {
     public override void Show()

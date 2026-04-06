@@ -21,7 +21,7 @@ public class GameManagerUI : MonoBehaviour
         UiManager.Instance.ShowWindow(UIWindowsIds.PopUpUI);
         PopUpUi popopui = UiManager.Instance.GetWindow(UIWindowsIds.PopUpUI) as PopUpUi;
         if(popopui == null) return;
-        popopui.AddText("HI");
+        popopui.SetText("HI");
     }
 
     private void HidePopUp()

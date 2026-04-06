@@ -1,75 +1,75 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using DG.Tweening;
 using System;
 using TMPro;
-
+using Vic.Code;
 
 public class PopUpUi : UIWindow
 {
-    [Header("UI Elements")]
-    [SerializeField] private TextMeshProUGUI _titleText;
-    [SerializeField] private Button _buttonNO;
-    [SerializeField] private Button _buttonYES;
+       
+    [Header("PopupUI")]
+    [SerializeField] private TextMeshProUGUI titleText;
+    [SerializeField] private Button noButton;
+    [SerializeField] private Button yesButton;
     
-    #region UI Window
-    [SerializeField] private RectTransform popUpRectTransform;
-    [SerializeField] private float initialHeight;
+    #region UIWindow
+    
+    [SerializeField] private RectTransform popupRectTransform;
+
     private float _initialY;
     private float _finalY;
+    #endregion
 
-    public void Initialize()
+
+    public Button YesButton => yesButton;
+
+    public Button NoButton => noButton;
+
+
+    public override void Initialize()
     {
-        _initialY = rectTransformCanvasGroup.rect.height + (popUpRectTransform.rect.height * 2);
-        _finalY = rectTransformCanvasGroup.position.y;
+        #region Animation setup
+        _initialY = _rectTransformCanvasGroup.rect.height + (popupRectTransform.rect.height * 2f);
+        _finalY = RectTransformCanvas.anchoredPosition.y;
 
-        popUpRectTransform.DOMoveY(_initialY, 0f);
-        _buttonNO.onClick.AddListener(OnNoButtonClick);
-        _buttonYES.onClick.AddListener(OnYesButtonClicked);
+        RectTransformCanvas.gameObject.SetActive(false);
+        popupRectTransform.DOMoveY(_initialY, 0f);
+        #endregion
+        
     }
+
+    private void OnDestroy()
+    {
+        
+    }
+
 
     public override void Show()
     {
-        popUpRectTransform.gameObject.SetActive(true);
-        popUpRectTransform.DOMoveY(_finalY, 1.5f).OnComplete(() => {});
+        RectTransformCanvas.gameObject.SetActive(true);
+        popupRectTransform.DOMoveY(_finalY, Duration).SetEase(EaseIn);
     }
 
     public override void Hide()
     {
-        popUpRectTransform.DOScale(Vector3.zero, 1.5f).SetEase(Ease.OutBack).OnComplete(() =>
+        popupRectTransform.DOMoveY(_initialY, Duration).SetEase(EaseOut).OnComplete(() =>
         {
-            popUpRectTransform.gameObject.SetActive(false);
+            RectTransformCanvas.gameObject.SetActive(false);
         });
+        
     }
 
-    #endregion
 
-    private void OnDestroy()
-    {
-        _buttonYES.onClick.RemoveListener(OnYesButtonClicked);
-        _buttonNO.onClick.RemoveListener(OnNoButtonClick);
-    }
+    #region PopupUI
 
-    public void AddText(string text)
-    {
-        _titleText.text = text;
-    }
-
-    #region PopUpUI
-
-    private void OnYesButtonClicked()
-    {
-        Debug.Log("Yes Activated");
-    }
-
-    private void OnNoButtonClick()
-    {
-        Debug.Log("No Activated");
-    }
-
+    
     public void SetText(string content)
-    {
-        _titleText.text = content;
+    { 
+        titleText.text = content;
     }
+
     #endregion
+
 }
