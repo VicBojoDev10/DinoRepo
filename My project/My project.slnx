@@ -1,6 +1,10 @@
 ﻿<Solution>
   <Project Path="NaughtyAttributes.Test.csproj" />
   <Project Path="NaughtyAttributes.Core.csproj" />
+  <Project Path="LeanCommon.csproj" />
   <Project Path="NaughtyAttributes.Editor.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="LeanTouch.csproj" />
+  <Project Path="CW.Common.csproj" />
+  <Project Path="Assembly-CSharp-firstpass.csproj" />
 </Solution>

@@ -3,7 +3,7 @@ using UnityEngine.Events;
 using System;
 public class ResponsiveManager : MonoBehaviour
 {
-    public ResponsiveManager Instance { get; private set; }
+    public static ResponsiveManager Instance { get; private set; }
 
     private void Awake()
     {
@@ -85,6 +85,7 @@ public class ResponsiveManager : MonoBehaviour
 
     #endregion
 
+}
     public enum ScreenOrientation
     {
         Portrait,
@@ -96,4 +97,3 @@ public class ResponsiveManager : MonoBehaviour
         Mobile,
         Tablet
     }    
-}

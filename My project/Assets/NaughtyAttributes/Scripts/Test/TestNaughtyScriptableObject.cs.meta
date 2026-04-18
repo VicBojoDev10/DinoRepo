@@ -1,5 +1,7 @@
 fileFormatVersion: 2
-guid: c2b396aeebc9d984da298eee313896bc
+guid: 753bdb918c6038142acddbd7aae6958f
+timeCreated: 1518639587
+licenseType: Store
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -13,6 +15,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 129996
   packageName: NaughtyAttributes
-  packageVersion: 2.1.4
-  assetPath: Assets/NaughtyAttributes/Scripts/Test/_TestScriptableObjectB.cs
-  uploadId: 480834
+  packageVersion: 2.1.5
+  assetPath: Assets/NaughtyAttributes/Scripts/Test/TestNaughtyScriptableObject.cs
+  uploadId: 897264
