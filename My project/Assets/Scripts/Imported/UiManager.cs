@@ -102,5 +102,7 @@ public static class UIWindowsIds
     public const string ReviveUI = "reviveui";
     public const string RetryUI = "retryui";
     public const string GameplayUI = "gameplayui";
+
+    public const string AudioUI = "audioui";
     
 }
