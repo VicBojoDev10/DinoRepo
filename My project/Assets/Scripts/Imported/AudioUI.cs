@@ -12,17 +12,10 @@ public class AudioUI : UIWindow
     {
         base.Initialize();
         musicSlider.onValueChanged.AddListener(SettingManager.Instance.SetMusicValue);
-        sfxSlider.onValueChanged.AddListener(SettingManager.Instance.SetSFXValue);
+        sfxSlider.onValueChanged.AddListener(SettingManager.Instance.SetSfxValue);
+        musicSlider.value = SettingManager.Instance.MusicSliderUI;
+        sfxSlider.value = SettingManager.Instance.SfxSliderUI;
     }
-
-
-    public override void Show()
-    {
-        base.Show();
-    }
-
-    public override void Hide()
-    {
-        base.Hide();
-    }
+    
+    
 }
