@@ -3843,8 +3843,9 @@ GameObject:
   - component: {fileID: 1114728772}
   - component: {fileID: 1114728773}
   - component: {fileID: 1114728774}
+  - component: {fileID: 1114728775}
   m_Layer: 0
-  m_Name: Testing
+  m_Name: GameManagers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3917,6 +3918,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Dino.Utility.Audio.AudioManager
   _audioManagerData: {fileID: 11400000, guid: e98f156d6eb76b24b82233ff54ab39e6, type: 2}
   _soundNameTest: 
+--- !u!114 &1114728775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114728769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 233f366b48525d443be1eb4d85945144, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryManager
+  items: []
+  skinsDataList:
+  - {fileID: 11400000, guid: 3f8b851739d0e4c4ca5d2529e2054fcc, type: 2}
+  - {fileID: 11400000, guid: b3a8f4f503bd5e54d9a29647c2cc12b3, type: 2}
 --- !u!114 &1177431874 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5283389379143103317, guid: 7ecd86ec27dce4146aa4207ad5393aa3, type: 3}
