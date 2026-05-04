@@ -110,10 +110,10 @@ RectTransform:
   - {fileID: 7308039412109767690}
   m_Father: {fileID: 3448962078694933248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 929, y: 384}
-  m_SizeDelta: {x: 300, y: 152}
+  m_AnchorMin: {x: 0.832906, y: 0.78518516}
+  m_AnchorMax: {x: 0.9611111, y: 0.9259259}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8249281732504234358
 CanvasRenderer:
@@ -212,10 +212,10 @@ RectTransform:
   - {fileID: 4738106900358288770}
   m_Father: {fileID: 3448962078694933248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -20.0225, y: -319.7995}
-  m_SizeDelta: {x: 1894.0658, y: 259.5514}
+  m_AnchorMin: {x: 0.08672845, y: 0.083726674}
+  m_AnchorMax: {x: 0.8961583, y: 0.32405204}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5655088414731598710
 MonoBehaviour:
@@ -718,7 +718,7 @@ GameObject:
   - component: {fileID: 697756698291481306}
   - component: {fileID: 1192479106680862324}
   m_Layer: 0
-  m_Name: PlayerBeatDown
+  m_Name: PlayerBeatDown1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -738,10 +738,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3448962078694933248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.4034188, y: 0.29212964}
+  m_AnchorMax: {x: 0.5965812, y: 0.70787036}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 452, y: 449}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &697756698291481306
 CanvasRenderer:

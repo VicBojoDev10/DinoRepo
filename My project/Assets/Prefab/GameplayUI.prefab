@@ -154,10 +154,10 @@ RectTransform:
   - {fileID: 5534443329460179285}
   m_Father: {fileID: 3448962078694933248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 969, y: 384}
-  m_SizeDelta: {x: 116, y: 116}
+  m_AnchorMin: {x: 0.88931626, y: 0.80185187}
+  m_AnchorMax: {x: 0.9388889, y: 0.90925926}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8249281732504234358
 CanvasRenderer:
@@ -274,10 +274,10 @@ RectTransform:
   - {fileID: 8709613470633765964}
   m_Father: {fileID: 3448962078694933248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.8891, y: -341.82776}
-  m_SizeDelta: {x: 2246.0503, y: 303.6079}
+  m_AnchorMin: {x: 0.020454707, y: 0.0429336}
+  m_AnchorMax: {x: 0.98030525, y: 0.32405204}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5655088414731598710
 MonoBehaviour:
@@ -490,7 +490,7 @@ GameObject:
   - component: {fileID: 2336597282795765318}
   - component: {fileID: 7692696830813157718}
   m_Layer: 0
-  m_Name: SlashImage
+  m_Name: SlashImages
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

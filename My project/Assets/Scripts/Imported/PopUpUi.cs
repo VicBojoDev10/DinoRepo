@@ -31,7 +31,7 @@ public class PopUpUi : UIWindow
     public override void Initialize()
     {
         #region Animation setup
-        _initialY = _rectTransformCanvasGroup.rect.height + (popupRectTransform.rect.height * 2f);
+        _initialY = _rectTransformCanvasGroup.rect.height + (popupRectTransform.rect.height * 5f);
         _finalY = RectTransformCanvas.anchoredPosition.y;
 
         RectTransformCanvas.gameObject.SetActive(false);
