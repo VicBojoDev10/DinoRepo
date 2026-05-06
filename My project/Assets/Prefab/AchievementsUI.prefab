@@ -600,6 +600,7 @@ MonoBehaviour:
   easeIn: 27
   easeOut: 26
   duration: 0.5
+  parentButtons: {fileID: 7445674272557812850}
   achievement:
   - {fileID: 7445674272557812850}
   achievementName: {fileID: 8302530794899094184}
@@ -2327,6 +2328,7 @@ GameObject:
   - component: {fileID: 3058687729908874418}
   - component: {fileID: 3645370606081328781}
   - component: {fileID: 3300963040041467010}
+  - component: {fileID: 7698664419849498458}
   m_Layer: 0
   m_Name: TrophyLayout
   m_TagString: Untagged
@@ -2436,19 +2438,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3058687729908874418}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7762408556948611224}
-        m_TargetAssemblyTypeName: AchievementsUI, Assembly-CSharp
-        m_MethodName: AchievementInfo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &3300963040041467010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2475,6 +2465,19 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &7698664419849498458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7445674272557812850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d06743910067f4546b797c4e32bec1ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AchievementButton
+  button: {fileID: 0}
 --- !u!1 &7669400661285849465
 GameObject:
   m_ObjectHideFlags: 0
@@ -2596,7 +2599,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 3563015338912708264}
   m_Direction: 0
   m_Value: 1
-  m_Size: 0.99999994
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
