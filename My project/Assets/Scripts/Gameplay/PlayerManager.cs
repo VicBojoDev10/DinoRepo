@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
@@ -9,7 +10,7 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager Instance { get; private set; }
 
     [Header("Movement & Jump")] 
-    public float jumpForce = 10f;
+    public float jumpForce = 5f;
     private Rigidbody2D rb;
     private bool isGrounded;
     public Transform groundCheck;
@@ -42,6 +43,14 @@ public class PlayerManager : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
+    public void OnJumpInput(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            Jump();
+        }
+    }
+
     public void OnAttackInput(InputAction.CallbackContext ctx)
     {
         if (ctx.performed)
@@ -50,20 +59,12 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void Jump()
-    {
-        if (isGrounded && !isTakingDamage)
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-           // AchievementManager.Instance?.AddJump();
-        }
-    }
-    private void Attack()
+    public void Attack()
     {
         if (currentCooldown <= 0f && !isTakingDamage)
         {
-            _animator.SetTrigger("Slash");
-
+            _animator.SetTrigger("SlashCooldown");
+            
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(slashPoint.position, slashRange, enemyLayer);
             bool hitSomething = false;
 
@@ -71,9 +72,62 @@ public class PlayerManager : MonoBehaviour
             {
                 hitSomething = true;
             }
-
+            
             currentCooldown = hitSomething ? 0f : slashCooldown;
+            
+            Debug.Log("SlashMade" + hitSomething);
         }
+    }
+
+    public void Jump()
+    {
+        if (isGrounded && !isTakingDamage)
+        {
+            _animator.SetTrigger("Jump");
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            AchievementManager.Instance?.AddJump();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(isTakingDamage) return;
+
+        if (other.CompareTag("Obstacle") || other.CompareTag("Enemy"))
+        {
+            TakeDamage();
+        }
+    }
+
+    private void TakeDamage()
+    {
+        lives--;
+        if (lives > 0)
+        {
+            StartCoroutine(DamageRoutine());
+        }
+        else
+        {
+            _animator.SetTrigger("Death");
+        }
+    }
+
+    private IEnumerator DamageRoutine()
+    {
+        isTakingDamage = true;
+        _animator.SetTrigger("TakeDamage");
+
+        yield return new WaitForSeconds(3f);
+        
+        _animator.SetTrigger("Recover");
+        isTakingDamage = false;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (slashPoint == null) return;
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(slashPoint.position, slashRange);
     }
 }
 

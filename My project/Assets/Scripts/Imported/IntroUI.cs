@@ -1,14 +1,14 @@
 using UnityEngine;
+using NaughtyAttributes;
+using DG.Tweening;
 using Vic.Code;
 public class IntroUI : UIWindow
 {
-    public override void Show()
+    public GameObject canvasIntro;
+    [Button]
+    public override void Initialize()
     {
-        base.Show();
-    }
-
-    public override void Hide()
-    {
-        base.Hide();
+        canvasIntro.SetActive(true);
+        base.Initialize();
     }
 }

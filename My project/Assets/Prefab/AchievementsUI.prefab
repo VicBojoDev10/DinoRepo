@@ -600,13 +600,12 @@ MonoBehaviour:
   easeIn: 27
   easeOut: 26
   duration: 0.5
-  parentButtons: {fileID: 7445674272557812850}
-  achievement:
-  - {fileID: 7445674272557812850}
+  achievementListpanel: {fileID: 8635050936784254155}
+  achievementDetailPanel: {fileID: 1963923576933347310}
+  achievementPanel: {fileID: 1963923576933347310}
   achievementName: {fileID: 8302530794899094184}
   achievementText: {fileID: 3952893003479040728}
-  achievementPanel: {fileID: 1963923576933347310}
-  returnButton: {fileID: 9072827597679864298}
+  returnButton: {fileID: 6475590168380157806}
 --- !u!1 &3870430018427616043
 GameObject:
   m_ObjectHideFlags: 0
@@ -2617,7 +2616,7 @@ GameObject:
   - component: {fileID: 5302285274019074203}
   - component: {fileID: 7316877644387116710}
   m_Layer: 0
-  m_Name: InventoryCanvas
+  m_Name: AchievementsCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

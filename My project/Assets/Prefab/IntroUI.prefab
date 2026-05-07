@@ -189,6 +189,7 @@ MonoBehaviour:
   easeIn: 27
   easeOut: 26
   duration: 0.5
+  canvasIntro: {fileID: 7728047159618799678}
 --- !u!1 &5347956067799287833
 GameObject:
   m_ObjectHideFlags: 0
