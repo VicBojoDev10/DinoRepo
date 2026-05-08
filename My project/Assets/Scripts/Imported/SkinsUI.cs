@@ -1,28 +1,46 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using Vic.Code;
 
 public class SkinsUI : UIWindow
 {
-    [SerializeField] private GameObject _itemPrefab;
-    [SerializeField] private Transform _itemContainer;
+    [SerializeField] private GameObject itemPrefab;
+    [SerializeField] private Transform itemContainer;
 
+    [SerializeField] private SkinSO[] availableSkins;
 
-    /*public override void Initialize()
+    [SerializeField] private UIWindow upgradesUI;
+    public override void Initialize()
     {
-       // SpawnItems();
-    }*/
+        base.Initialize();
+       SpawnItems();
+    }
 
     private void SpawnItems()
     {
-       // foreach(ItemData ItemData in )
-    }
-    public override void Show()
-    {
-        base.Show();
+        foreach (ItemData itemData in itemContainer)
+        {
+            Destroy(itemData.GameObject());
+        }
+
+        foreach (SkinSO skinData in availableSkins)
+        {
+            GameObject skin = Instantiate(itemPrefab, itemContainer);
+
+            SkinItemUI itemUI = skin.GetComponent<SkinItemUI>();
+            if (itemUI != null)
+            {
+                itemUI.Setup(skinData);
+            }
+        }
     }
 
-    public override void Hide()
+    public void OnReturnButtonClick()
     {
-        base.Hide();
+        this.Hide();
+        if (upgradesUI != null)
+        {
+            upgradesUI.Show();
+        }
     }
 }

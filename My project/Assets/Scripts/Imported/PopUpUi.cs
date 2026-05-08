@@ -17,8 +17,8 @@ public class PopUpUi : UIWindow
     #region UIWindow
     
     [SerializeField] private RectTransform popupRectTransform;
-
-    private float _initialY;
+    [SerializeField] private float offScreenY = 1500f;
+    
     private float _finalY;
     #endregion
 
@@ -31,32 +31,26 @@ public class PopUpUi : UIWindow
     public override void Initialize()
     {
         #region Animation setup
-        _initialY = _rectTransformCanvasGroup.rect.height + (popupRectTransform.rect.height * 2f);
         _finalY = RectTransformCanvas.anchoredPosition.y;
 
-        RectTransformCanvas.gameObject.SetActive(false);
-        popupRectTransform.DOMoveY(_initialY, 0f);
+        popupRectTransform.anchoredPosition = new Vector2(popupRectTransform.anchoredPosition.x, offScreenY);
+        
+        base.Initialize();
         #endregion
         
     }
-
-    private void OnDestroy()
-    {
-        
-    }
-
-
+    
     public override void Show()
     {
-        RectTransformCanvas.gameObject.SetActive(true);
-        popupRectTransform.DOMoveY(_finalY, Duration).SetEase(EaseIn);
+        base.Show();
+        popupRectTransform.DOAnchorPosY(_finalY, Duration).SetEase(EaseIn);
     }
 
     public override void Hide()
     {
-        popupRectTransform.DOMoveY(_initialY, Duration).SetEase(EaseOut).OnComplete(() =>
+        popupRectTransform.DOAnchorPosY(offScreenY, Duration).SetEase(EaseOut).OnComplete(() =>
         {
-            RectTransformCanvas.gameObject.SetActive(false);
+            base.Hide();
         });
         
     }

@@ -5,10 +5,15 @@ using Vic.Code;
 public class IntroUI : UIWindow
 {
     public GameObject canvasIntro;
-    [Button]
+
     public override void Initialize()
     {
+        Show();
+    }
+
+    public override void Show()
+    {
+        Debug.Log("Show intro");
         canvasIntro.SetActive(true);
-        base.Initialize();
     }
 }

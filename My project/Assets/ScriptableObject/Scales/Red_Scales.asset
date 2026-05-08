@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 275f8665fad570445b688a7b46d06d3d, type: 3}
   m_Name: Red_Scales
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  icon: {fileID: 5948616908152106111, guid: 9a0e53f3239282543b7d5340e951d6cc, type: 3}
+  icon: {fileID: -5692501889489113875, guid: 0ade3117e4154fd449e4218dec99d185, type: 3}
   itemName: Red Skin
   _skinsType: 0

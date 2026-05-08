@@ -3,13 +3,17 @@ using Vic.Code;
 
 public class RetryUI : UIWindow
 {
-    public override void Show()
-    {
-        base.Show();
-    }
+    [SerializeField] private PlayerManager _playerManager;
 
-    public override void Hide()
+    public void Awake()
     {
-        base.Hide();
+        DisplayRetry();
+    }
+    public void DisplayRetry()
+    {
+        if (_playerManager.lives == 0)
+        {
+            base.enabled = true;
+        }
     }
 }

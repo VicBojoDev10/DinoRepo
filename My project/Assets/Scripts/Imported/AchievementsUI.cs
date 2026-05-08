@@ -13,6 +13,7 @@ public class AchievementsUI : UIWindow
     public GameObject achievementName;
     public GameObject achievementText;
     public GameObject returnButton;
+    public GameObject upgradesCnvas;
 
     public override void Initialize()
     {  
@@ -27,7 +28,7 @@ public class AchievementsUI : UIWindow
         
         achievementName.SetActive(true);
         achievementText.SetActive(false);
-        returnButton.SetActive(false);
+        returnButton.SetActive(true);
     }
     public void HideAchievementInfo()
     {
@@ -41,6 +42,22 @@ public class AchievementsUI : UIWindow
 
     public void OnReturnButtonCicked()
     {
-        ShowAchievementList();
+        if (achievementListpanel.activeSelf)
+        {
+            ShowAchievementList();
+        }
+        else if (achievementDetailPanel.activeSelf)
+        {
+            achievementListpanel.SetActive(false);
+            achievementDetailPanel.SetActive(true);
+
+            if (upgradesCnvas != null)
+            {
+                upgradesCnvas.SetActive(true);
+            }
+            
+            this.Hide();
+        }
+        
     }
 }
