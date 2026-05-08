@@ -24,10 +24,15 @@ public class PlayerManager : MonoBehaviour
     public LayerMask enemyLayer;
 
     [Header("Health & States")] 
-    public int lives = 2;
+    public int lives = 3;
     private Animator _animator;
     private bool isTakingDamage;
-
+    
+    [SerializeField] private GameplayUI gameplayUI;
+    [SerializeField] private ReviveUI reviveUI;
+    [SerializeField] private RetryUI retryUI;
+    
+    
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -101,7 +106,9 @@ public class PlayerManager : MonoBehaviour
 
     private void TakeDamage()
     {
-        lives--;
+        Debug.Log("Me hice daño!" + lives);
+
+    lives--;
         if (lives > 0)
         {
             StartCoroutine(DamageRoutine());
@@ -128,6 +135,42 @@ public class PlayerManager : MonoBehaviour
         if (slashPoint == null) return;
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(slashPoint.position, slashRange);
+    }
+
+    public void OnDeath()
+    {
+        Debug.Log("PlayerIsDead");
+        if(gameplayUI != null) gameplayUI.Hide();
+        
+        if(reviveUI != null)
+        {
+            reviveUI.Show();
+        }
+        else
+        {
+            ShowRetryScreen();
+        }
+    }
+
+    public void OnReviveFailed()
+    {
+        if(reviveUI != null) reviveUI.Hide();
+        ShowRetryScreen();
+    }
+
+    private void ShowRetryScreen()
+    {
+        if(retryUI != null)
+        {
+            retryUI.Show();
+        }
+    }
+
+    public void OnReviveSuccess()
+    {
+        if(reviveUI != null) reviveUI.Hide();
+        
+        if(gameplayUI != null) gameplayUI.Show();
     }
 }
 

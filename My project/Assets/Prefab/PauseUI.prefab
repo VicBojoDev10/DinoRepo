@@ -172,6 +172,7 @@ MonoBehaviour:
   easeIn: 27
   easeOut: 26
   duration: 0.5
+  menuUI: {fileID: 3842743765941218727, guid: f4774d3ab218adb4e8c8b5728c76f4ea, type: 3}
 --- !u!1 &4707268280823906748
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,7 +296,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5283389379143103317}
         m_TargetAssemblyTypeName: PauseUI, Assembly-CSharp
-        m_MethodName: Hide
+        m_MethodName: OnContinueClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -580,7 +581,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8970388671768054719}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5283389379143103317}
+        m_TargetAssemblyTypeName: PauseUI, Assembly-CSharp
+        m_MethodName: OnExitToMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6596924964727680995
 GameObject:
   m_ObjectHideFlags: 0

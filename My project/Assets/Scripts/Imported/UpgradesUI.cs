@@ -3,13 +3,33 @@ using Vic.Code;
 
 public class UpgradesUI : UIWindow
 {
-    public override void Show()
+    [SerializeField] private MenuUI menuUI;
+    [SerializeField] private SkinsUI skinsUI;
+    [SerializeField] private InventoryUI inventoryUI;
+    [SerializeField] private AchievementsUI achievementsUI;
+    
+    public void OpenSkins()
     {
-        base.Show();
+        {
+            skinsUI.Show();
+        }
+    }
+    public void OpenInventory()
+    {
+        {
+            inventoryUI.Show();
+        }
+    }
+    public void OpenAchievements()
+    {
+        {
+            achievementsUI.Show();
+        }
     }
 
-    public override void Hide()
+    public void OnReturnToMenu()
     {
-        base.Hide();
+        this.Hide(); 
+        menuUI.Show(); 
     }
 }

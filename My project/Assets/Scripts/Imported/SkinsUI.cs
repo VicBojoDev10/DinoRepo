@@ -6,6 +6,12 @@ public class SkinsUI : UIWindow
 {
     [SerializeField] private GameObject itemPrefab;
     [SerializeField] private Transform itemContainer;
+    
+    public GameObject skinsListPanel;
+    public GameObject skinDetailsPanel;
+    public GameObject backToUpgradesButton;
+    public GameObject backToListButton;
+    
 
     [SerializeField] private SkinSO[] availableSkins;
 
@@ -13,7 +19,26 @@ public class SkinsUI : UIWindow
     public override void Initialize()
     {
         base.Initialize();
-       SpawnItems();
+        ShowSkinsList();
+        SpawnItems();
+    }
+
+    public void ShowSkinsList()
+    {
+        skinsListPanel.SetActive(true);
+        skinDetailsPanel.SetActive(false);
+        
+        backToUpgradesButton.SetActive(true);
+        backToListButton.SetActive(false);
+    }
+
+    public void ShowSkinsDetails()
+    {
+        skinsListPanel.SetActive(false);
+        skinDetailsPanel.SetActive(true);
+        
+        backToUpgradesButton.SetActive(false);
+        backToListButton.SetActive(true);
     }
 
     private void SpawnItems()
@@ -42,5 +67,10 @@ public class SkinsUI : UIWindow
         {
             upgradesUI.Show();
         }
+    }
+
+    public void OnBackToSkinsClick()
+    {
+        ShowSkinsList();
     }
 }

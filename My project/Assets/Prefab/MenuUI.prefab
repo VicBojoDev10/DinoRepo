@@ -505,7 +505,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5666309837948113783}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3842743765941218727}
+        m_TargetAssemblyTypeName: MenuUI, Assembly-CSharp
+        m_MethodName: OnPlayerClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3821739906056099654
 GameObject:
   m_ObjectHideFlags: 0
@@ -558,6 +570,8 @@ MonoBehaviour:
   easeIn: 27
   easeOut: 26
   duration: 0.5
+  upgradesUI: {fileID: 959673042064652858, guid: 3162d9d0a983f234abb3de0d1e065d1f, type: 3}
+  gameplayUI: {fileID: 8066818721706177276, guid: add644dc950b9434f8125c0b7ba47c77, type: 3}
 --- !u!1 &4283621288477088308
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,13 +887,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3821739906056099654}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 3842743765941218727}
+        m_TargetAssemblyTypeName: MenuUI, Assembly-CSharp
+        m_MethodName: OnUpgradeClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

@@ -2,13 +2,18 @@ using UnityEngine;
 using Vic.Code;
 public class PauseUI : UIWindow
 {
- public override void Show()
+    [SerializeField] private MenuUI menuUI;
+    
+    public void OnContinueClicked()
     {
-        base.Show();
+        Time.timeScale = 1f;
+        this.Hide();
     }
 
-    public override void Hide()
+    public void OnExitToMenu()
     {
-        base.Hide();
+        Time.timeScale = 1f;
+        this.Hide();
+        menuUI.Show();  
     }
 }

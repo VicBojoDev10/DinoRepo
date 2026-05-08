@@ -1,19 +1,25 @@
 using UnityEngine;
 using NaughtyAttributes;
 using DG.Tweening;
+using UnityEditor;
 using Vic.Code;
 public class IntroUI : UIWindow
 {
-    public GameObject canvasIntro;
+    [SerializeField] private MenuUI menuUI;
 
     public override void Initialize()
     {
-        Show();
+       base.Initialize();
+       base.Show();
+       Invoke(nameof(GoToMenu),3f);
     }
 
-    public override void Show()
+    public void GoToMenu()
     {
-        Debug.Log("Show intro");
-        canvasIntro.SetActive(true);
+        base.Hide();
+        if(menuUI != null)
+        {
+            menuUI.Show();
+        }
     }
 }

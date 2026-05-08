@@ -3,13 +3,24 @@ using Vic.Code;
 
 public class MenuUI : UIWindow
 {
-    public override void Show()
+    [SerializeField] private UpgradesUI upgradesUI;
+    [SerializeField] private GameplayUI gameplayUI;
+
+    public override void Initialize()
     {
-        base.Show();
+        base.Initialize();
+    }
+    public void OnPlayerClicked()
+    {
+        this.Hide();
+        if (GameplayController.Instance != null)
+        {
+            GameplayController.Instance.StartIntroCinematic();   
+        }
     }
 
-    public override void Hide()
+    public void OnUpgradeClicked()
     {
-        base.Hide();
+        upgradesUI.Show();
     }
 }

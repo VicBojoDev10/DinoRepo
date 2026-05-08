@@ -19,6 +19,6 @@ public class AchievementButton : MonoBehaviour
             Debug.Log("Ayuda errooor"); 
             return;
         }
-        achievementsUI.HideAchievementInfo();
+        // achievementsUI.HideAchievementInfo();
     }
 }

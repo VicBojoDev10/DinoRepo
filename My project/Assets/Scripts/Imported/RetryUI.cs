@@ -5,6 +5,11 @@ public class RetryUI : UIWindow
 {
     [SerializeField] private PlayerManager _playerManager;
 
+    public override void Initialize()
+    {
+        base.Initialize();
+    }
+
     public void Awake()
     {
         DisplayRetry();

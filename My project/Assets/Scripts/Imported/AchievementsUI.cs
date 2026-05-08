@@ -1,63 +1,50 @@
-using System;
-using Unity.VisualScripting;
-using System.Collections.Generic;
 using UnityEngine;
 using Vic.Code;
 
 public class AchievementsUI : UIWindow
 {
-    
-    public GameObject achievementListpanel;
+
+    public GameObject achievementListPanel;
     public GameObject achievementDetailPanel;
-    public GameObject achievementPanel;
-    public GameObject achievementName;
-    public GameObject achievementText;
-    public GameObject returnButton;
-    public GameObject upgradesCnvas;
+    public GameObject backToUpgradesButton;
+    public GameObject backToListButton;
+
+    public UIWindow upgradesUI;
 
     public override void Initialize()
     {  
-        ShowAchievementList();
         base.Initialize();
+        ShowAchievementList();
     }
-    
+
     public void ShowAchievementList()
     {
-        achievementListpanel.SetActive(true);
+        achievementListPanel.SetActive(true);
         achievementDetailPanel.SetActive(false);
         
-        achievementName.SetActive(true);
-        achievementText.SetActive(false);
-        returnButton.SetActive(true);
+        backToUpgradesButton.SetActive(true);
+        backToListButton.SetActive(false);
     }
-    public void HideAchievementInfo()
+    public void ShowAchievementDetail()
     {
-        achievementListpanel.SetActive(false);
+        achievementListPanel.SetActive(false);
         achievementDetailPanel.SetActive(true);
-        
-        achievementName.SetActive(false);
-        achievementText.SetActive(true);
-        returnButton.SetActive(true);
+        backToUpgradesButton.SetActive(false);
+        backToListButton.SetActive(true);
     }
 
-    public void OnReturnButtonCicked()
+    public void OnBackToUpgradesClicked()
     {
-        if (achievementListpanel.activeSelf)
-        {
-            ShowAchievementList();
-        }
-        else if (achievementDetailPanel.activeSelf)
-        {
-            achievementListpanel.SetActive(false);
-            achievementDetailPanel.SetActive(true);
-
-            if (upgradesCnvas != null)
-            {
-                upgradesCnvas.SetActive(true);
-            }
-            
-            this.Hide();
-        }
+        this.Hide();
         
+        if(upgradesUI != null)
+        {
+            upgradesUI.Show();
+        }
+    }
+
+    public void OnBackToListClicked()
+    {
+        ShowAchievementList();
     }
 }
