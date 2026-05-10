@@ -1,24 +1,36 @@
 using UnityEngine;
+using UnityEngine.UI;
 using Vic.Code;
 
 public class RetryUI : UIWindow
 {
-    [SerializeField] private PlayerManager _playerManager;
+    [SerializeField] private Button retryButton;
+    [SerializeField] private Button menuButton;
 
     public override void Initialize()
     {
         base.Initialize();
+        if(retryButton != null)
+            retryButton.onClick.AddListener(OnRetryClicked);
+        if(menuButton != null)
+            menuButton.onClick.AddListener(OnMenuClicked);
     }
 
-    public void Awake()
+    private void OnMenuClicked()
     {
-        DisplayRetry();
-    }
-    public void DisplayRetry()
-    {
-        if (_playerManager.lives == 0)
+        this.Hide();
+        if (PlayerManager.Instance != null)
         {
-            base.enabled = true;
+            PlayerManager.Instance.ActionBackMenu();
+        }
+    }
+
+    private void OnRetryClicked()
+    {
+        this.Hide();
+        if (PlayerManager.Instance != null)
+        {
+            PlayerManager.Instance.ActionRetry();
         }
     }
 }

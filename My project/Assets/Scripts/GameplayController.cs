@@ -1,66 +1,56 @@
 using UnityEngine;
-using DG.Tweening;
+using System.Collections;
 using Vic.Code;
 
 public class GameplayController : MonoBehaviour
 {
- public static GameplayController Instance;
+    public static GameplayController Instance;
+    
+    [SerializeField] private PlayerController playerController;
+    [SerializeField] private Animator enemyAnimator;
+    
+    [SerializeField] private GameObject worldContainer;
 
-    [Header("Contenedores")]
-    [SerializeField] private GameObject gameplayContainer;
-
-    [Header("Actores de la Cinemática")]
-    [SerializeField] private Transform playerTransform;
-    [SerializeField] private Transform cinematicEnemyTransform;
-
-    [Header("Puntos de Animación")]
-    public Vector3 playerLeftPos;
-    public Vector3 playerStartPos;
-    public Vector3 enemyApproachPos;
-
-    [Header("UI")]
-    [SerializeField] private GameplayUI gameplayUI;
+    [SerializeField] private float timeToHideEnemy = 5f;
 
     private void Awake()
     {
         Instance = this;
-        
-        gameplayContainer.SetActive(true);
-        gameplayContainer.transform.localScale = Vector3.zero;
-
+        if(worldContainer != null) worldContainer.SetActive(true);
     }
 
-    public void StartIntroCinematic()
+    public void StartGameSequence()
     {
+        playerController.PlayStartIntro();
+        if(enemyAnimator != null) enemyAnimator.SetTrigger("Attack");
 
-        Sequence introSeq = DOTween.Sequence();
-        
-        introSeq.Append(cinematicEnemyTransform.DOMove(enemyApproachPos, 1.2f).SetEase(Ease.InBack));
-        introSeq.Join(playerTransform.DOMove(playerLeftPos, 1.5f).SetEase(Ease.OutCubic));
-
-        introSeq.AppendInterval(0.3f);
-        
-        introSeq.Append(playerTransform.DOMove(playerStartPos, 0.6f).SetEase(Ease.OutBack));
-        introSeq.AppendCallback(() => {
-            if(ResponsiveCamera.Instance != null) ResponsiveCamera.Instance.DoImpactShake();
-        });
-
-        introSeq.Join(cinematicEnemyTransform.DOMove(cinematicEnemyTransform.position + Vector3.right * 2f, 0.5f));
-        introSeq.OnComplete(() => {
-            StartActualGameplay();
-        });
+        Debug.Log("Intro Activated");
     }
 
-    private void StartActualGameplay()
+    public void OnintroSequenceFinished()
     {
-        
-        gameplayContainer.transform.localScale = Vector3.one;
-        
-        
-        if(gameplayUI != null) gameplayUI.Show();
-        
+        playerController.SetRunning(true);
+        playerController.SetPhysicsActive(true);
 
-        Debug.Log("Gameplay iniciado sin pausar el motor.");
+        StartCoroutine(HideEnemyAfterDelay());
+        
+        Debug.Log("gameplay Activated");
+    }
+
+    private IEnumerator HideEnemyAfterDelay()
+    {
+        Rigidbody2D enemyRB = enemyAnimator.GetComponent<Rigidbody2D>();
+        if (enemyRB != null)
+        {
+            enemyRB.linearVelocity = Vector2.zero;
+            enemyRB.bodyType = RigidbodyType2D.Kinematic;
+        }
+        yield return new WaitForSeconds(timeToHideEnemy);
+
+        if (enemyAnimator != null)
+        {
+            enemyAnimator.SetTrigger("Hide");
+            Debug.Log("Executing HIde");
+        }
     }
 }
-

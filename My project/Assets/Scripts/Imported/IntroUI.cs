@@ -11,7 +11,6 @@ public class IntroUI : UIWindow
     {
        base.Initialize();
        base.Show();
-       Invoke(nameof(GoToMenu),10f);
     }
 
     public void GoToMenu()

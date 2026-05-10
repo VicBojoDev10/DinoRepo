@@ -706,6 +706,8 @@ MonoBehaviour:
   easeIn: 27
   easeOut: 26
   duration: 0.5
+  retryButton: {fileID: 1196466194808719585}
+  menuButton: {fileID: 7652641201110316177}
 --- !u!1 &3997727630656761240
 GameObject:
   m_ObjectHideFlags: 0

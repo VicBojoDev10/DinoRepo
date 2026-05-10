@@ -1,176 +1,131 @@
-using System;
 using UnityEngine;
-using System.Collections;
-using Unity.VisualScripting;
-using UnityEngine.InputSystem;
-
-[RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
+using Vic.Code;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance { get; private set; }
 
-    [Header("Movement & Jump")] 
-    public float jumpForce = 5f;
-    private Rigidbody2D rb;
-    private bool isGrounded;
-    public Transform groundCheck;
-    public LayerMask groundLayer;
+    [Header("Movement & Jump")] public int maxHealth = 3;
+    public int currentHealth;
+    public int lives = 1;
 
-    [Header("Attack")] 
-    public float slashCooldown = 2f;
-    private float currentCooldown = 0f;
-    public Transform slashPoint;
-    public float slashRange = 1f;
+    [Header("Floor")] [SerializeField] private Transform groundCheck;
+    [SerializeField] private float groundCheckRadius = 0.2f;
+    [SerializeField] private LayerMask groundLayer;
+    public bool isGrounded;
+
+    [Header("Slash & Range")]
+    public float slashRange = 1.5f;
     public LayerMask enemyLayer;
-
-    [Header("Health & States")] 
-    public int lives = 3;
-    private Animator _animator;
-    private bool isTakingDamage;
+    [SerializeField] private Transform attackPoint;
     
+    [Header("UI")]
     [SerializeField] private GameplayUI gameplayUI;
     [SerializeField] private ReviveUI reviveUI;
     [SerializeField] private RetryUI retryUI;
+    [SerializeField] private MenuUI menuUI;
     
-    
+    private PlayerController playerController;
+
     private void Awake()
     {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
-
-        rb = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
+        Instance = this;
+        playerController = GetComponent<PlayerController>();
+        currentHealth = maxHealth;
     }
 
     private void Update()
     {
-        if (currentCooldown > 0) currentCooldown -= Time.deltaTime;
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        CheckGroundStatus();
     }
 
-    public void OnJumpInput(InputAction.CallbackContext context)
+    private void CheckGroundStatus()
     {
-        if(context.performed)
+        bool wasGrounded = isGrounded;
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        playerController.TriggerDamage();
+
+        if (currentHealth <= 0)
         {
-            Jump();
+            OnDeath();
         }
     }
 
-    public void OnAttackInput(InputAction.CallbackContext ctx)
+    private void OnDeath()
     {
-        if (ctx.performed)
-        {
-            Attack();
-        }
-    }
+        playerController.TriggerDeath();
+        gameplayUI.Hide();
 
-    public void Attack()
-    {
-        if (currentCooldown <= 0f && !isTakingDamage)
-        {
-            _animator.SetTrigger("SlashCooldown");
-            
-            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(slashPoint.position, slashRange, enemyLayer);
-            bool hitSomething = false;
-
-            foreach (Collider2D enemy in hitEnemies)
-            {
-                hitSomething = true;
-            }
-            
-            currentCooldown = hitSomething ? 0f : slashCooldown;
-            
-            Debug.Log("SlashMade" + hitSomething);
-        }
-    }
-
-    public void Jump()
-    {
-        if (isGrounded && !isTakingDamage)
-        {
-            _animator.SetTrigger("Jump");
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            AchievementManager.Instance?.AddJump();
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if(isTakingDamage) return;
-
-        if (other.CompareTag("Obstacle") || other.CompareTag("Enemy"))
-        {
-            TakeDamage();
-        }
-    }
-
-    private void TakeDamage()
-    {
-        Debug.Log("Me hice daño!" + lives);
-
-    lives--;
         if (lives > 0)
-        {
-            StartCoroutine(DamageRoutine());
-        }
-        else
-        {
-            _animator.SetTrigger("Death");
-        }
-    }
-
-    private IEnumerator DamageRoutine()
-    {
-        isTakingDamage = true;
-        _animator.SetTrigger("TakeDamage");
-
-        yield return new WaitForSeconds(3f);
-        
-        _animator.SetTrigger("Recover");
-        isTakingDamage = false;
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        if (slashPoint == null) return;
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(slashPoint.position, slashRange);
-    }
-
-    public void OnDeath()
-    {
-        Debug.Log("PlayerIsDead");
-        if(gameplayUI != null) gameplayUI.Hide();
-        
-        if(reviveUI != null)
         {
             reviveUI.Show();
         }
         else
         {
-            ShowRetryScreen();
-        }
-    }
-
-    public void OnReviveFailed()
-    {
-        if(reviveUI != null) reviveUI.Hide();
-        ShowRetryScreen();
-    }
-
-    private void ShowRetryScreen()
-    {
-        if(retryUI != null)
-        {
             retryUI.Show();
         }
     }
 
-    public void OnReviveSuccess()
+    public void ActionRevive()
     {
-        if(reviveUI != null) reviveUI.Hide();
+        lives--;
+        currentHealth = maxHealth;
+        reviveUI.Hide();
         
-        if(gameplayUI != null) gameplayUI.Show();
+        playerController.TriggerRevive();
+        gameplayUI.Show();
+    }
+
+    public void ActionRetry()
+    {
+        retryUI.Hide();
+        ResetPlayerStats();
+        GameplayController.Instance.StartGameSequence();
+    }
+
+    public void ActionBackMenu()
+    {
+        retryUI.Hide();
+        reviveUI.Hide();
+        gameplayUI.Hide();
+        
+        playerController.ForceMenuIdle();
+        menuUI.Show();
+    }
+
+    private void ResetPlayerStats()
+    {
+        currentHealth = maxHealth;
+        lives = 1;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if(groundCheck != null)
+            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        if (attackPoint != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(attackPoint.position, slashRange);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            TakeDamage(1);
+        }
+
+        if (((1 << collision.gameObject.layer) & enemyLayer) != 0)
+        {
+            TakeDamage(1);
+        }
     }
 }
 

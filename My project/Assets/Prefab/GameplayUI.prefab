@@ -524,7 +524,7 @@ MonoBehaviour:
   jumpButton: {fileID: 6503755151795065066}
   slashButton: {fileID: 7584162415714494300}
   pauseButton: {fileID: 1104746364077345495}
-  highjumpButton: {fileID: 6503755151795065066}
+  activateHighJumpButton: {fileID: 3774229399886157961}
   highjumpCooldownFill: {fileID: 2949190578300517200}
   resetSlashButton: {fileID: 7584162415714494300}
   slashCooldownFill: {fileID: 8566300166619348268}

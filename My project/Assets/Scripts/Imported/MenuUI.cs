@@ -5,17 +5,13 @@ public class MenuUI : UIWindow
 {
     [SerializeField] private UpgradesUI upgradesUI;
     [SerializeField] private GameplayUI gameplayUI;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-    }
-    public void OnPlayerClicked()
+    
+    public void OnPlayButtonClicked()
     {
         this.Hide();
         if (GameplayController.Instance != null)
         {
-            GameplayController.Instance.StartIntroCinematic();   
+            GameplayController.Instance.StartGameSequence();   
         }
     }
 
