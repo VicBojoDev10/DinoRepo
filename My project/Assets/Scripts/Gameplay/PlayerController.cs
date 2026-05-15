@@ -15,8 +15,18 @@ public class PlayerController : MonoBehaviour
 
     public void SetPhysicsActive(bool active)
     {
+        if (_rb == null) _rb = GetComponent<Rigidbody2D>();
+    
         _rb.bodyType = active ? RigidbodyType2D.Dynamic : RigidbodyType2D.Kinematic;
-        if(!active) _rb.linearVelocity = Vector2.zero;
+    
+        if (!active)
+        {
+            _rb.linearVelocity = Vector2.zero;
+        }
+        else
+        {
+            _rb.WakeUp();
+        }
     }
     
     public void PlayStartIntro() => _animator.SetTrigger("StartGame");

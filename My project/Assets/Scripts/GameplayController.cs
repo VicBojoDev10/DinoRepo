@@ -6,51 +6,38 @@ public class GameplayController : MonoBehaviour
 {
     public static GameplayController Instance;
     
-    [SerializeField] private PlayerController playerController;
-    [SerializeField] private Animator enemyAnimator;
+    [SerializeField] private PlayerController player;
+    [SerializeField] private Animator introEnemyAnimator;
     
-    [SerializeField] private GameObject worldContainer;
-
-    [SerializeField] private float timeToHideEnemy = 5f;
+    [Header("Piso Inicial de Escena")]
+    [SerializeField] private GameObject initialFloor; 
 
     private void Awake()
     {
         Instance = this;
-        if(worldContainer != null) worldContainer.SetActive(true);
+        
+        if (initialFloor != null) initialFloor.SetActive(true);
+        
+        player.SetPhysicsActive(false); 
     }
 
     public void StartGameSequence()
     {
-        playerController.PlayStartIntro();
-        if(enemyAnimator != null) enemyAnimator.SetTrigger("Attack");
-
-        Debug.Log("Intro Activated");
+        player.PlayStartIntro();
+        if (introEnemyAnimator != null) introEnemyAnimator.SetTrigger("Attack");
     }
-
-    public void OnintroSequenceFinished()
+    
+    public void OnIntroAnimationFinished()
     {
-        playerController.SetRunning(true);
-        playerController.SetPhysicsActive(true);
-
-        StartCoroutine(HideEnemyAfterDelay());
+        Debug.Log("Intro terminada: Activando físicas y spawners.");
         
-        Debug.Log("gameplay Activated");
-    }
-
-    private IEnumerator HideEnemyAfterDelay()
-    {
-        Rigidbody2D enemyRB = enemyAnimator.GetComponent<Rigidbody2D>();
-        if (enemyRB != null)
+        player.SetPhysicsActive(true); 
+        
+        player.SetRunning(true);       
+        
+        if (PlatformSpawner.Instance != null)
         {
-            enemyRB.linearVelocity = Vector2.zero;
-            enemyRB.bodyType = RigidbodyType2D.Kinematic;
-        }
-        yield return new WaitForSeconds(timeToHideEnemy);
-
-        if (enemyAnimator != null)
-        {
-            enemyAnimator.SetTrigger("Hide");
-            Debug.Log("Executing HIde");
+            PlatformSpawner.Instance.StartSpawning();
         }
     }
 }
