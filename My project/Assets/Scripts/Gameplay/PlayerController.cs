@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_rb == null) _rb = GetComponent<Rigidbody2D>();
     
-        _rb.bodyType = active ? RigidbodyType2D.Dynamic : RigidbodyType2D.Kinematic;
+        _rb.bodyType = active ? RigidbodyType2D.Kinematic : RigidbodyType2D.Dynamic;
     
         if (!active)
         {

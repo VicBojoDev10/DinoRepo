@@ -33,7 +33,9 @@ public class GameplayController : MonoBehaviour
         
         player.SetPhysicsActive(true); 
         
-        player.SetRunning(true);       
+        player.SetRunning(true);  
+        
+        introEnemyAnimator.SetTrigger("Hide");
         
         if (PlatformSpawner.Instance != null)
         {
