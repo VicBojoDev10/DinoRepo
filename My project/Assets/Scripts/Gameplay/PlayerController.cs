@@ -16,17 +16,7 @@ public class PlayerController : MonoBehaviour
     public void SetPhysicsActive(bool active)
     {
         if (_rb == null) _rb = GetComponent<Rigidbody2D>();
-    
-        _rb.bodyType = active ? RigidbodyType2D.Kinematic : RigidbodyType2D.Dynamic;
-    
-        if (!active)
-        {
-            _rb.linearVelocity = Vector2.zero;
-        }
-        else
-        {
-            _rb.WakeUp();
-        }
+        
     }
     
     public void PlayStartIntro() => _animator.SetTrigger("StartGame");
@@ -38,18 +28,15 @@ public class PlayerController : MonoBehaviour
     public void TriggerDeath()
     {
         _animator.SetTrigger("Die");
-        SetPhysicsActive(false);
     }
 
     public void TriggerRevive()
     {
         _animator.SetTrigger("Revive");
-        SetPhysicsActive(true);
     }
 
     public void ForceMenuIdle()
     {
         _animator.SetTrigger("MenuIdle");
-        SetPhysicsActive(false);
     }
 } 
