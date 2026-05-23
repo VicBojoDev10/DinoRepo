@@ -18,8 +18,14 @@ public class SkinsUI : UIWindow
     [SerializeField] private UIWindow upgradesUI;
     public override void Initialize()
     {
+        
         base.Initialize();
         ShowSkinsList();
+    }
+
+    public override void Show()
+    {
+        base.Show();
         SpawnItems();
     }
 

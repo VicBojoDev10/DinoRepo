@@ -48,7 +48,7 @@ public class InventoryManager : MonoBehaviour
         {
             if (skin.SkinsType == skinsType)
             {
-                RunTimeItem runTimeItem = new RunTimeItem(skin.icon , skin.ItemName, skin.SkinsType);
+                RunTimeItem runTimeItem = new RunTimeItem(skin.Icon , skin.ItemCost, skin.SkinsType);
                 items.Add(runTimeItem); 
             }
         }
@@ -68,20 +68,29 @@ public class InventoryManager : MonoBehaviour
         items.Clear();
         items.AddRange(loadedItems);
     }
+
+    private void CreateAllSkins()
+    {
+        foreach (var skin in skinsDataList)
+        {
+            
+        }
+    }
 }
+
 
 [Serializable]
 public class RunTimeItem
 {
-    public Sprite icon;
-    public string itemData;
-    public SkinsType skinsType;
+    public Sprite Icon;
+    public int ItemCost;
+    public SkinsType SkinsType;
 
-    public RunTimeItem(Sprite icon, string itemName, SkinsType skinsType)
+    public RunTimeItem(Sprite icon, int itemName, SkinsType skinsType)
     {
-        this.icon = icon;
-        this.itemData = itemName;
-        this.skinsType = skinsType;
+        this.Icon = icon;
+        this.ItemCost = itemName;
+        this.SkinsType = skinsType;
     }
 }
 

@@ -252,7 +252,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 8.12, y: 3.44}
+    oldSize: {x: 8.37, y: 3.37}
     newSize: {x: 8.37, y: 3.37}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3271,7 +3271,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1114728769}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 233f366b48525d443be1eb4d85945144, type: 3}
   m_Name: 
@@ -4647,7 +4647,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4405802357159187970, guid: e8ae8af39714431499375fb21f748b3e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.000258574
+      value: 0.00005242032
       objectReference: {fileID: 0}
     - target: {fileID: 5774589176623146989, guid: e8ae8af39714431499375fb21f748b3e, type: 3}
       propertyPath: m_AnchorMax.y

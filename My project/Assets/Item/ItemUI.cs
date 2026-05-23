@@ -5,14 +5,13 @@ using TMPro;
 
 public class ItemUI : MonoBehaviour
 {
-    public ItemData itemData;
     [SerializeField] private Image itemIcon;
-    private TextMeshProUGUI itemName;
+    [SerializeField] private TextMeshProUGUI itemName;
 
     [Button]
-    public void SetitemData()
+    public void SetitemData(RunTimeItem runTimeItem)
     {
-        itemIcon.sprite = itemData.icon;
-        itemName.text = itemData.name;
+        itemIcon.sprite = runTimeItem.Icon;
+        itemName.text = runTimeItem.ItemCost.ToString();
     }
 }
