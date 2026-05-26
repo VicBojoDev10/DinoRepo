@@ -39,7 +39,7 @@ public class EnemyEntity : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            PlayerManager.Instance.TakeDamage(1);
+            //PlayerManager.Instance.TakeDamage(1);
         }
     }
 }

@@ -53,7 +53,7 @@ public class ReviveUI : UIWindow
         
         if (PlayerManager.Instance != null)
         {
-            PlayerManager.Instance.ActionRevive();
+            //PlayerManager.Instance.ActionRevive();
         }
     }
 
@@ -67,7 +67,7 @@ public class ReviveUI : UIWindow
         }
         else if (PlayerManager.Instance != null)
         {
-            PlayerManager.Instance.ActionRetry();
+            //PlayerManager.Instance.ActionRetry();
         }
         Debug.Log("Out of time, game over");
     }

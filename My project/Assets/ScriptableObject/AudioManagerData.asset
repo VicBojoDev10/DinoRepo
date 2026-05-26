@@ -13,15 +13,51 @@ MonoBehaviour:
   m_Name: AudioManagerData
   m_EditorClassIdentifier: Assembly-CSharp::Dino.Utility.Audio.AudioManagerData
   audioData:
-  - name: Click
-    clip: {fileID: 8300000, guid: 5cfeb0504a350a34581c4ea63fcaf9bd, type: 3}
+  - name: EnterMenu
+    clip: {fileID: 8300000, guid: b43d102aac6b145468dcaa94a5cccae1, type: 3}
     loop: 0
     volume: 1
     pitch: 1
     audioType: 1
-  - name: 
-    clip: {fileID: 0}
-    loop: 0
+  - name: MenuMusic
+    clip: {fileID: 8300000, guid: f265e9e9054669e449978ea87301f554, type: 3}
+    loop: 1
     volume: 0
     pitch: 0
     audioType: 0
+  - name: GameplayMusic
+    clip: {fileID: 8300000, guid: 32da5eeb1f5fe3249b4bf3313e8cc232, type: 3}
+    loop: 1
+    volume: 0
+    pitch: 0
+    audioType: 0
+  - name: LobbyMusic
+    clip: {fileID: 8300000, guid: 6d6884de965e7fd4a82d3a8c2721bcee, type: 3}
+    loop: 1
+    volume: 0
+    pitch: 0
+    audioType: 0
+  - name: BackMenu
+    clip: {fileID: 8300000, guid: d8d04c6f80a1140db85ede568dab1f51, type: 3}
+    loop: 0
+    volume: 0
+    pitch: 0
+    audioType: 1
+  - name: Slash
+    clip: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
+    loop: 0
+    volume: 0
+    pitch: 0
+    audioType: 1
+  - name: Retry
+    clip: {fileID: 8300000, guid: a0ca8964c08d54c5dbebf245bdc474ca, type: 3}
+    loop: 0
+    volume: 0
+    pitch: 0
+    audioType: 1
+  - name: GameOver
+    clip: {fileID: 8300000, guid: 5fdb13d3756c84fecac96f5a2d124370, type: 3}
+    loop: 0
+    volume: 0
+    pitch: 0
+    audioType: 1
