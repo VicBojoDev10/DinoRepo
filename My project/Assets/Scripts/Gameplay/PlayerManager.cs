@@ -4,83 +4,93 @@ using Vic.Code;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance { get; private set; }
-
+ 
+    [Header("Físicas")]
+    [SerializeField] private float jumpForce = 10f;
+    [SerializeField] private float gravity   = 30f;
+ 
+    [Header("Detección de suelo")]
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float     groundCheckRadius = 0.15f;
+    [SerializeField] private LayerMask groundLayer;
+ 
     private Rigidbody2D _rb;
+    private float       _verticalVelocity;
+    private bool        _physicsEnabled;
+    private bool        _isGrounded;
 
-    [SerializeField] private float jumpForce = 5f;
-    [SerializeField] private float gravity = 18f;
-    private Collider2D _playerCollider2D;
-    [SerializeField] private LayerMask groundLayer = 0;
-    private bool _isGrounded;
-    private float _verticalVelocity;
-    
-    private Vector2 _movement;
-    private Keyboard _keyboard;
-
+ 
     private void Awake()
     {
-        _keyboard = Keyboard.current;
         Instance = this;
-        _isGrounded = false;
         _rb = GetComponent<Rigidbody2D>();
-        _rb.gravityScale = 0f;
+ 
+        _rb.bodyType       = RigidbodyType2D.Dynamic;
+        _rb.gravityScale   = 1f;
         _rb.freezeRotation = true;
-
-        _playerCollider2D = GetComponent<Collider2D>();
+        _rb.constraints    = RigidbodyConstraints2D.FreezeRotation;
+    }
+ 
+    private void OnDestroy()
+    {
+        if (Instance == this) Instance = null;
     }
 
-    void Update()
+    private void FixedUpdate()
     {
-        _movement = Vector2.zero;
-
-        _isGrounded = _playerCollider2D != null && _playerCollider2D.IsTouchingLayers(groundLayer);
-        
-        if (_keyboard.spaceKey.wasPressedThisFrame && _isGrounded)
-        {
-            _verticalVelocity = jumpForce;
-        }
-
-        if (!_isGrounded || _verticalVelocity > 0)
-        {
-            _verticalVelocity -= gravity * Time.deltaTime;
-        }
+        if (!_physicsEnabled) return;
+ 
+        _isGrounded = groundCheck != null
+            ? Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer)
+            : false;
+ 
+        if (!_isGrounded || _verticalVelocity > 0f)
+            _verticalVelocity -= gravity * Time.fixedDeltaTime;
         else
-        {
-            _verticalVelocity = 0;
-        }
-        _movement.y = _verticalVelocity;
-        
-        _movement *= Time.deltaTime;
-        
-        transform.Translate(_movement);
-        
+            _verticalVelocity = 0f;
+
+        _rb.linearVelocity = new Vector2(0f, _verticalVelocity);
     }
 
-    public void SetPhysicsActive(bool active)
+ 
+    public void EnablePhysics()
     {
-        _rb.bodyType = active ? RigidbodyType2D.Dynamic : RigidbodyType2D.Kinematic;
-        
-        if (!active)
-        {
-            _rb.linearVelocity = Vector2.zero;
-        }
+        _verticalVelocity = 1f;
+        _physicsEnabled   = true;
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+ 
+    public void Jump(bool isHighJump = false)
     {
-        if (collision.CompareTag("DeathZone"))
-        {
-            Debug.Log("Jugador cayó al vacío.");
-            GameplayController.Instance.TriggerGameOver();
-        }
+        if (!_physicsEnabled) return;
+ 
+        bool grounded = groundCheck != null
+            ? Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer)
+            : false;
+ 
+        if (grounded)
+            _verticalVelocity = isHighJump ? jumpForce * 1.6f : jumpForce;
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+ 
+ 
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            GameplayController.Instance.TriggerGameOver();
-        }
+        if (col.CompareTag("DeathZone"))
+            GameplayController.Instance?.TriggerGameOver();
     }
+ 
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Enemy"))
+            GameplayController.Instance?.TriggerGameOver();
+    }
+ 
+#if UNITY_EDITOR
+    private void OnDrawGizmosSelected()
+    {
+        if (groundCheck == null) return;
+        Gizmos.color = _isGrounded ? Color.green : Color.red;
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+    }
+#endif
 }
 

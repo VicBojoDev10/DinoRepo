@@ -1,42 +1,78 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Animator), typeof(Rigidbody2D))]
+[RequireComponent(typeof(Animator))]
 public class PlayerController : MonoBehaviour
 {
+    private const string STATE_IDLE      = "Idle";
+    private const string STATE_RUN       = "Run";
+    private const string STATE_JUMP      = "Jump";
+    private const string STATE_SLASH     = "Slash";
+    private const string STATE_HIT       = "GetHit";
+    private const string STATE_DEATH     = "Death";
+    private const string STATE_REVIVE    = "Revive";
+    private const string STATE_INTRO     = "StartGame";
+ 
     private Animator _animator;
-
-    private Rigidbody2D _rb;
-
+    private bool     _isRunning;
+ 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-        _rb = GetComponent<Rigidbody2D>();
+        _animator.applyRootMotion = false;
+    }
+ 
+    private void OnDestroy()
+    {
+        _isRunning = false;
+    }
+ 
+    public void PlayStartIntro()
+    {
+        _isRunning = false;
+        Play(STATE_INTRO);
     }
 
-    public void SetPhysicsActive(bool active)
+    public void SetRunning(bool isRunning)
     {
-        if (_rb == null) _rb = GetComponent<Rigidbody2D>();
-        
+        _isRunning = isRunning;
+        Play(isRunning ? STATE_RUN : STATE_IDLE);
     }
-    
-    public void PlayStartIntro() => _animator.SetTrigger("StartGame");
-    public void SetRunning(bool isRunning) => _animator.SetBool("isRunning", isRunning);
-    public void TriggerJump() => _animator.SetTrigger("Jump");
-    public void TriggerSlash() => _animator.SetTrigger("Slash");
-    public void TriggerDamage() => _animator.SetTrigger("GetHit");
+
+    public void TriggerJump()
+    {
+        Play(STATE_JUMP);
+    }
+ 
+    public void TriggerSlash()
+    {
+        Play(STATE_SLASH);
+    }
+ 
+    public void TriggerDamage()
+    {
+        Play(STATE_HIT);
+    }
 
     public void TriggerDeath()
     {
-        _animator.SetTrigger("Die");
+        _isRunning = false;
+        Play(STATE_DEATH);
     }
-
+ 
     public void TriggerRevive()
     {
-        _animator.SetTrigger("Revive");
+        Play(STATE_REVIVE);
     }
 
     public void ForceMenuIdle()
     {
-        _animator.SetTrigger("MenuIdle");
+        _isRunning = false;
+        Play(STATE_IDLE);
+    }
+
+    private void Play(string stateName)
+    {
+        if (_animator == null) return;
+        _animator.Play(stateName, 0, 0f);
     }
 } 

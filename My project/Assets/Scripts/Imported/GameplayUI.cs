@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using System.Collections;
 using Vic.Code;
 
@@ -42,10 +41,7 @@ public class GameplayUI : UIWindow
     
     public void OnJumpClicked()
     {
-        if (_isHighJumpPowerUpActive)
-        {
-            Debug.Log("Boosted Jump");
-        }
+        PlayerManager.Instance.Jump(isHighJump: _isHighJumpPowerUpActive);
         
         PlayerManager.Instance.GetComponent<PlayerController>().TriggerJump();
     }
@@ -98,8 +94,15 @@ public class GameplayUI : UIWindow
     private IEnumerator ResetSlashCooldownRoutine()
     {
         resetSlashButton.interactable = false;
-       
-        yield return new WaitForSeconds(resetSlashCooldown);
+
+        float elapsed = 0f;
+        while (elapsed < resetSlashCooldown)
+        {
+            elapsed += Time.deltaTime;
+            slashCooldownFill.fillAmount = elapsed / resetSlashCooldown;
+            yield return null;
+        }
+        slashCooldownFill.fillAmount = 0;
         resetSlashButton.interactable = true;
     }
 

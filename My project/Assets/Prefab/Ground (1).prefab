@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1214971615471535172}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: -1}
-  m_LocalPosition: {x: -0.19859996, y: -5.6, z: 1.1}
+  m_LocalPosition: {x: -0.19859996, y: -5.6, z: 0}
   m_LocalScale: {x: 0.038819596, y: 0.033855226, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -107,8 +107,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9016a519af69242bb28739c9bfdeb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectSpawner
-  enemyPrefabs: []
-  spawnPointOnPlatform: {fileID: 0}
+  enemyPrefabs:
+  - {fileID: 6343281522497413796, guid: ea04b79e22e282545a2fbb64668cb622, type: 3}
+  - {fileID: 2934749883074822293, guid: 1e34cabeb4e39d648a4ddab971b521fb, type: 3}
+  spawnPointOnPlatform: {fileID: 5031952866506353212}
 --- !u!114 &2870214335123870786
 MonoBehaviour:
   m_ObjectHideFlags: 0
