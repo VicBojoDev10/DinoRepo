@@ -26,7 +26,6 @@ public class EnemyEntity : MonoBehaviour
         {
             _rb.constraints   = RigidbodyConstraints2D.FreezeAll;
             _rb.interpolation = RigidbodyInterpolation2D.Interpolate;
-
             _rb.bodyType      = RigidbodyType2D.Kinematic;
         }
     }
@@ -44,20 +43,14 @@ public class EnemyEntity : MonoBehaviour
             Debug.Log("[EnemyEntity] Rock no puede ser eliminado con slash.");
         }
     }
-    
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (_isDead) return;
  
-        if (other.CompareTag("Slash"))
-        {
-            OnHitBySlash();
-            return;
-        }
- 
         if (other.CompareTag("Player"))
         {
-            HitPlayer();
+            CheckPlayerCollision();
         }
     }
 
@@ -67,11 +60,23 @@ public class EnemyEntity : MonoBehaviour
  
         if (other.gameObject.CompareTag("Player"))
         {
-            HitPlayer();
+            CheckPlayerCollision();
         }
     }
+
+    private void CheckPlayerCollision()
+    {
+        PlayerManager pm = PlayerManager.Instance;
+
+        if (pm != null && pm.IsSlashing && type == EnemyType.Worms)
+        {
+            KillEnemy();
+            return;
+        }
+        
+        HitPlayer();
+    }
     
- 
     private void HitPlayer()
     {
         PlayerManager pm = PlayerManager.Instance;
@@ -79,11 +84,14 @@ public class EnemyEntity : MonoBehaviour
             pm.GetComponent<PlayerController>()?.TriggerDamage();
         
         GameplayController.Instance?.TriggerGameOver();
+        pm?.ResetForNewGame(); 
     }
  
     private void KillEnemy()
     {
         _isDead = true;
+        
+        if (_col != null) _col.enabled = false;
         
         transform.SetParent(null);
         
@@ -94,8 +102,6 @@ public class EnemyEntity : MonoBehaviour
             _rb.gravityScale = 2f;
             _rb.AddForce(slashKnockback, ForceMode2D.Impulse);
         }
-        
-        if (_col != null) _col.enabled = false;
  
         Destroy(gameObject, destroyDelay);
     }

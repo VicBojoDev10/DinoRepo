@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using DG.Tweening;
 using Vic.Code;
 
 public class GameplayController : MonoBehaviour
@@ -8,19 +9,18 @@ public class GameplayController : MonoBehaviour
    public static GameplayController Instance { get; private set; }
  
     public enum GameState { Intro, Menu, Playing, GameOver }
-    public GameState currentState = GameState.Intro;
+    public GameState currentState = GameState.Menu;
  
-    [Header("Referencias — objetos de esta misma escena")]
-    [SerializeField] private PlayerManager    playerManager;
-    [SerializeField] private PlayerController playerController;
- 
-    [Header("UIs")]
+    [Header("UIs — locales de escena")]
     [SerializeField] private MenuUI     menuUI;
     [SerializeField] private GameplayUI gameplayUI;
     [SerializeField] private RetryUI    retryUI;
  
-    [Header("Animación de Inicio")]
+    [Header("Duración intro (segundos)")]
     [SerializeField] private float introAnimationDuration = 2.5f;
+
+    private PlayerManager    _playerManager;
+    private PlayerController _playerController;
  
     private float _startTime;
     private float _distanceTraveled;
@@ -30,23 +30,31 @@ public class GameplayController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+ 
+        if (GameManager.Instance != null)
+        {
+            _playerManager    = GameManager.Instance.playerManager;
+            _playerController = GameManager.Instance.playerController;
+        }
+        else
+        {
+            Debug.LogError("[GameplayController] GameManager no encontrado.");
+        }
     }
  
     private void OnDestroy()
     {
-   
         if (Instance == this) Instance = null;
     }
  
     private void Start()
     {
+        _playerManager?.ResetForNewGame();
+ 
         currentState = GameState.Menu;
         menuUI.Show();
- 
-        if (playerController != null)
-            playerController.ForceMenuIdle();
- 
-        AudioManager.Instance?.PlayBGMLobby();
+        _playerController?.ForceMenuIdle();
+        Dino.Utility.Audio.AudioManager.Instance?.PlayBGMLobby();
     }
  
     private void Update()
@@ -54,7 +62,7 @@ public class GameplayController : MonoBehaviour
         if (currentState == GameState.Playing)
             _distanceTraveled += 6f * Time.deltaTime;
     }
- 
+
  
     public void StartGameSequence()
     {
@@ -62,9 +70,7 @@ public class GameplayController : MonoBehaviour
  
         currentState = GameState.Intro;
         gameplayUI.Show();
- 
-        if (playerController != null)
-            playerController.PlayStartIntro();
+        _playerController?.PlayStartIntro();
  
         StartCoroutine(IntroSequenceRoutine());
     }
@@ -77,13 +83,11 @@ public class GameplayController : MonoBehaviour
         _startTime        = Time.time;
         _distanceTraveled = 0f;
  
-        playerManager.EnablePhysics();
+        _playerManager?.EnablePhysics();
+        _playerController?.SetRunning(true);
  
-        if (playerController != null)
-            playerController.SetRunning(true);
- 
-        PlatformSpawner.Instance.StartSpawning();
-        AudioManager.Instance?.PlayBGMGameplay();
+        PlatformSpawner.Instance?.StartSpawning();
+        Dino.Utility.Audio.AudioManager.Instance?.PlayBGMGameplay();
  
         Debug.Log("[GameplayController] Gameplay activo.");
     }
@@ -94,11 +98,8 @@ public class GameplayController : MonoBehaviour
         currentState = GameState.GameOver;
  
         PlatformSpawner.Instance?.StopSpawning();
- 
-        if (playerController != null)
-            playerController.TriggerDeath();
- 
-        AudioManager.Instance?.PlayGameOver();
+        _playerController?.TriggerDeath();
+        Dino.Utility.Audio.AudioManager.Instance?.PlayGameOver();
  
         float timeAlive = Time.time - _startTime;
         CalculateReward(timeAlive, _distanceTraveled);
@@ -115,6 +116,14 @@ public class GameplayController : MonoBehaviour
  
     public void ReloadScene()
     {
+     
+        DOTween.KillAll();
+ 
+        menuUI?.HideImmediate();
+        gameplayUI?.HideImmediate();
+        retryUI?.HideImmediate();
+ 
+        // 3. Recargar
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
