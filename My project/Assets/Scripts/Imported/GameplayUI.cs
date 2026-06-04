@@ -48,6 +48,8 @@ public class GameplayUI : UIWindow
     public void OnSlashClicked()
     {
         Debug.Log("[GameplayUI] Slash ejecutado.");
+        PlayerManager.Instance?.ExecuteSlash();
+        PlayerManager.Instance?.GetComponent<PlayerController>()?.TriggerSlash();
     }
  
     public void OnPauseClicked()

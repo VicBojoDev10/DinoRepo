@@ -6,54 +6,57 @@ using Vic.Code;
 
 public class ReviveUI : UIWindow
 {
-   [Header("Configuración de Revivir")]
+    [Header("Configuración de Revivir")] 
     [SerializeField] private Button reviveItemButton;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private float timeToGameOver = 5f;
-    
     [SerializeField] private RetryUI retryUI;
-    private PlayerController playerController;
-
+    
     private Coroutine _countDownCoroutine;
 
     public override void Initialize()
     {
         base.Initialize();
-        reviveItemButton.onClick.AddListener(OnReviveItemClicked);
+        if (reviveItemButton != null)
+        {
+            reviveItemButton.onClick.AddListener(OnReviveItemClicked);
+        }
     }
 
     public override void Show()
     {
         base.Show();
-        
+
         if (_countDownCoroutine != null) StopCoroutine(_countDownCoroutine);
         _countDownCoroutine = StartCoroutine(ReviveTimerRoutine());
     }
-
+    
     private IEnumerator ReviveTimerRoutine()
     {
         float timer = timeToGameOver;
 
         while (timer > 0)
         {
+            if (timerText != null) 
+            {
+                timerText.text = Mathf.CeilToInt(timer).ToString();
+            }
             
-            if (timerText != null) timerText.text = Mathf.CeilToInt(timer).ToString();
-            
-            timer -= Time.deltaTime;
+            timer -= Time.unscaledDeltaTime; 
             yield return null;
         }
         
-        Debug.Log("Out of time, game over");
         OnTimeExpired();
     }
 
     public void OnReviveItemClicked()
     {
         if (_countDownCoroutine != null) StopCoroutine(_countDownCoroutine);
-        
+
         if (PlayerManager.Instance != null)
         {
-            //PlayerManager.Instance.ActionRevive();
+            PlayerManager.Instance.ActionRevive();
+            this.Hide();
         }
     }
 
@@ -61,20 +64,36 @@ public class ReviveUI : UIWindow
     {
         this.Hide();
 
+        Time.timeScale = 1f;
+
+        GameplayController.Instance?.TriggerGameOver();
+
         if (retryUI != null)
         {
             retryUI.Show();
         }
         else if (PlayerManager.Instance != null)
         {
-            //PlayerManager.Instance.ActionRetry();
+            PlayerManager.Instance.ResetForNewGame();
         }
-        Debug.Log("Out of time, game over");
     }
-    
+
     public override void Hide()
     {
         base.Hide();
         if (_countDownCoroutine != null) StopCoroutine(_countDownCoroutine);
     }
+
+    private void OnRetryClicked()
+    {
+        this.Hide();
+            
+        Time.timeScale = 1f;
+
+        if (PlayerManager.Instance != null)
+        {
+            PlayerManager.Instance.ResetForNewGame();
+        }
+    }
+    
 }

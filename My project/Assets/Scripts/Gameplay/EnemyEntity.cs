@@ -74,17 +74,9 @@ public class EnemyEntity : MonoBehaviour
             return;
         }
         
-        HitPlayer();
-    }
-    
-    private void HitPlayer()
-    {
-        PlayerManager pm = PlayerManager.Instance;
-        if (pm != null)
-            pm.GetComponent<PlayerController>()?.TriggerDamage();
+        pm?.TakeDamage();
         
-        GameplayController.Instance?.TriggerGameOver();
-        pm?.ResetForNewGame(); 
+        KillEnemy();
     }
  
     private void KillEnemy()

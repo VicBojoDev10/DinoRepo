@@ -30,7 +30,7 @@ public class RetryUI : UIWindow
         this.Hide();
         if (PlayerManager.Instance != null)
         {
-            //PlayerManager.Instance.ActionRetry();
+            PlayerManager.Instance.ResetForNewGame();
         }
     }
 }

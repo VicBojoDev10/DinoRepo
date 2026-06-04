@@ -371,6 +371,7 @@ GameObject:
   - component: {fileID: 340431534}
   - component: {fileID: 340431533}
   - component: {fileID: 340431535}
+  - component: {fileID: 340431536}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -448,6 +449,65 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScrollingBackground
   scrollingSpeed: 0.2
+--- !u!212 &340431536
+SpriteRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340431531}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_Sprite: {fileID: 21300000, guid: 168d4c89695ec554d84b438bd781f3a0, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2.4, y: 1.35}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_SpriteSortPoint: 0
 --- !u!1 &364053255
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,7 +794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2e2cee6d6420674e9b96cdb56117637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResponsiveCamera
-  cameraTabletPosition: {x: -2.52, y: 0, z: 0.8}
+  cameraTabletPosition: {x: -1.41, y: 0, z: 0.8}
   cameraMobilePosition: {x: 0, y: 0, z: 0.8}
 --- !u!1 &611374358
 GameObject:
@@ -968,6 +1028,7 @@ GameObject:
   - component: {fileID: 885149615}
   - component: {fileID: 885149614}
   - component: {fileID: 885149613}
+  - component: {fileID: 885149616}
   m_Layer: 5
   m_Name: Image (1)
   m_TagString: Untagged
@@ -1045,6 +1106,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885149611}
   m_CullTransparentMesh: 1
+--- !u!212 &885149616
+SpriteRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885149611}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_Sprite: {fileID: 21300000, guid: 168d4c89695ec554d84b438bd781f3a0, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2.4, y: 1.35}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_SpriteSortPoint: 0
 --- !u!1 &948368635
 GameObject:
   m_ObjectHideFlags: 0
@@ -1481,11 +1601,11 @@ MonoBehaviour:
   transform3: {fileID: 364053256}
   platformPrefab: {fileID: 1214971615471535172, guid: bde39e62b827ffb43a63a28c14e70124, type: 3}
   initialPlatform: {fileID: 2870214334833969816}
-  spawnInterval: 2.05
+  spawnInterval: 2
   safeZoneDuration: 10
   platformSpeed: 6
-  platformWidth: 6
-  minGap: 3
+  platformWidth: 10
+  minGap: 8
 --- !u!1 &1151229030
 GameObject:
   m_ObjectHideFlags: 0
@@ -1537,7 +1657,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 10.427032, y: -26.693172}
+  m_Offset: {x: 33.18876, y: -83.73798}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1547,7 +1667,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 191.37698, y: 61.117294}
+  m_Size: {x: 432.4826, y: 175.20692}
   m_EdgeRadius: 0
 --- !u!4 &1151229032
 Transform:
@@ -2062,6 +2182,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4015812130992500047}
   - {fileID: 7838557401088655068}
   - {fileID: 5273509739720507909}
   - {fileID: 1581731990}
@@ -14865,7 +14986,6 @@ Transform:
   m_Children:
   - {fileID: 1537730115726629578}
   - {fileID: 2446103435159290286}
-  - {fileID: 4015812130992500047}
   m_Father: {fileID: 173025903}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3821739905410200173
@@ -15475,11 +15595,11 @@ Transform:
   m_GameObject: {fileID: 4847584384451396348}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.9, y: 1.0927849, z: 1.1}
-  m_LocalScale: {x: 0.0874271, y: 0.0878503, z: 0.054666035}
+  m_LocalPosition: {x: -10.820801, y: -2.119995, z: 1.5}
+  m_LocalScale: {x: 0.054666035, y: 0.054666035, z: 0.054666035}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3816693729779712362}
+  m_Father: {fileID: 1383207912}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4024300365901091700
 GameObject:
@@ -16588,7 +16708,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00011739431, y: 0}
+  m_AnchoredPosition: {x: 0.0006600249, y: 0}
   m_SizeDelta: {x: 0, y: -8.8205}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &4441398431577004181
@@ -17391,6 +17511,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4538326266887272417}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: PlayStartIntro
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &4682888520837539353
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17842,6 +17974,7 @@ GameObject:
   - component: {fileID: 7051401175421382020}
   - component: {fileID: 8010242407586944034}
   - component: {fileID: 1948952007629956642}
+  - component: {fileID: 8010242407586944035}
   m_Layer: 0
   m_Name: Wild Dog
   m_TagString: Untagged
@@ -19812,13 +19945,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
   jumpForce: 15
-  gravityScaleMultiplier: 3
+  gravity: 30
   groundCheck: {fileID: 2446103435159290286}
-  groundCheckRadius: 5.35
+  groundCheckRadius: 0.2
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  spawnPoint: {fileID: 147017520}
+  maxLives: 2
   slashCenter: {fileID: 1537730115726629578}
   slashRadius: 1.37
   enemyLayer:
@@ -22630,6 +22763,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
         m_MethodName: Jump
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4538326266887272417}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: TriggerJump
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -26752,6 +26897,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4538326266887272417}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: TriggerSlash
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7585424469395101424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28856,6 +29013,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8010242407586944035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4847584384451396348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd7b2557916d9ea419781699a405dfc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  slashKnockback: {x: 4, y: 6}
+  destroyDelay: 1.2
+  timeBeforeHide: 4
+  hideAnimationDuration: 0.5
 --- !u!224 &8021716601528564808
 RectTransform:
   m_ObjectHideFlags: 0
@@ -31951,7 +32124,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 3563015339176515565}
   m_Direction: 0
   m_Value: 1
-  m_Size: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
